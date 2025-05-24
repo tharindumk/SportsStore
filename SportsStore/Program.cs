@@ -13,15 +13,8 @@ builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
-//app.UseHttpsRedirection();
-
-//app.UseAuthorization();
-
-//app.MapControllers();
-
 app.UseStaticFiles();
+app.MapControllerRoute("Pagination2", "Products/Page{productPage}", new { Controller = "Home", action = "Index" });
 app.MapDefaultControllerRoute();
-
+SeedData.EnsurePopulated(app);
 app.Run();
